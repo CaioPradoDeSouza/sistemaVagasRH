@@ -52,7 +52,7 @@ public class VagaController {
 	// Listar Vagas
 
 	@RequestMapping("/vagas")
-	public ModelAndView listarVagas() {
+	public ModelAndView listaVagas() {
 		ModelAndView mv = new ModelAndView("vaga/listaVaga");
 		Iterable<Vaga> vagas = vr.findAll();
 		mv.addObject("vagas", vagas);
