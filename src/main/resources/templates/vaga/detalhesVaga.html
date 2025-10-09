@@ -80,12 +80,12 @@
 
 
 			<h2>Cadastrar candidato:</h2>
-			
-			<th:block th:include="mensagemValidacao"></th:block> 
+
+			<th:block th:include="mensagemValidacao"></th:block>
 
 			<br>
 
-			<form method="post">
+			<form method="post" th:object="${candidato}">
 
 				<div class="form-group">
 					<div class="row">
@@ -135,12 +135,13 @@
 			</thead>
 			<tbody>
 
-				<tr>
-					<td><span></span></td>
-					<td><span></span></td>
-					<td><span></span></td>
-					<td><a class="waves-effect waves-light btn-small" href="#"><button type="button"
-								class="btn btn-danger">Excluir</button></a></td>
+				<tr th:each="candidato : ${candidatos}">
+					<td><span th:text="${candidato.nomeCandidato}"></span></td>
+					<td><span th:text="${candidato.rg}"></span></td>
+					<td><span th:text="${candidato.email}"></span></td>
+					<td><a class="waves-effect waves-light btn-small"
+							th:href="${(#mvc.url('VC#deletarCandidato').arg(0,candidato.rg)).build()}"><button
+								type="button" class="btn btn-danger">Excluir</button></a></td>
 				</tr>
 
 

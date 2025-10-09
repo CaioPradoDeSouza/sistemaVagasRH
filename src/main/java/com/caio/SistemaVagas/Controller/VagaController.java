@@ -81,7 +81,9 @@ public class VagaController {
 		vr.delete(vaga);
 		return "redirect:/vagas";
 	}
-
+	
+	// Adicionar candidato
+	@RequestMapping(value="/{codigo}", method = RequestMethod.POST)
 	public String detalhesVagaPost(@PathVariable("codigo") long codigo, @Valid Candidato candidato,
 			BindingResult result, RedirectAttributes attributes) {
 		
@@ -93,7 +95,7 @@ public class VagaController {
 		//RG duplicado
 		
 		if(cr.findByRg(candidato.getRg()) != null) {
-			attributes.addFlashAttribute("mensagem erro", "RG duplicado");
+			attributes.addFlashAttribute("mensagem_erro", "RG duplicado");
 			return "redirect:/{codigo}";
 		}
 		
