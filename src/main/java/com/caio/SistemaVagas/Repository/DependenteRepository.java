@@ -1,0 +1,22 @@
+package com.caio.SistemaVagas.Repository;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.caio.SistemaVagas.Model.Dependentes;
+import com.caio.SistemaVagas.Model.Funcionario;
+
+public interface DependenteRepository extends CrudRepository <Dependentes, Long> {
+	
+	Iterable<Dependentes> findByFuncionario(Funcionario funcionario);
+	
+	
+	// pensando no metodo delele
+	Dependentes findByCpf(String cpf);
+	Dependentes findById(long id);
+	
+	// criado para impelementar 
+	List<Dependentes> findByNome(String nome);
+}
