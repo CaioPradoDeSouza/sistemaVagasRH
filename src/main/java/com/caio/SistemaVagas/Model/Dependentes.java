@@ -11,14 +11,14 @@ import jakarta.persistence.ManyToOne;
 public class Dependentes {
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue
 	private long id;
 	
 	@Column(unique=true)
 	private String cpf;
 	
 	private String nome;
-	private String dataNascimento;
+	private String datanascimento;
 	
 	@ManyToOne
 	private Funcionario funcionario;
@@ -39,12 +39,14 @@ public class Dependentes {
 		this.nome = nome;
 	}
 
-	public String getDataNascimento() {
-		return dataNascimento;
+	
+
+	public String getDatanascimento() {
+		return datanascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDatanascimento(String datanascimento) {
+		this.datanascimento = datanascimento;
 	}
 
 	public Funcionario getFuncionario() {

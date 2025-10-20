@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.caio.SistemaVagas.Model.Dependentes;
 import com.caio.SistemaVagas.Model.Funcionario;
 
-public interface DependenteRepository extends CrudRepository <Dependentes, Long> {
+public interface DependenteRepository extends CrudRepository <Dependentes, String> {
 	
 	Iterable<Dependentes> findByFuncionario(Funcionario funcionario);
 	

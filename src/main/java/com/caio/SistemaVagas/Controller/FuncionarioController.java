@@ -60,7 +60,7 @@ public class FuncionarioController {
 	public ModelAndView dependentes(@PathVariable("id") long id) {
 		Funcionario funcionario = fr.findById(id);
 		ModelAndView mv = new ModelAndView("funcionario/dependentes");
-		mv.addObject("funcionario", funcionario);
+		mv.addObject("funcionarios", funcionario);
 
 		// lista de dependentes baseada no funcionário
 		Iterable<Dependentes> dependentes = dr.findByFuncionario(funcionario);
@@ -135,7 +135,7 @@ public class FuncionarioController {
 				
 		dr.delete(dependente);
 		
-		return "redirect;/dependentes/" + codigo;
+		return "redirect:/dependentes/" + codigo;
 	}
 
 }
