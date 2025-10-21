@@ -19,4 +19,8 @@ public interface DependenteRepository extends CrudRepository <Dependentes, Strin
 	
 	// criado para impelementar 
 	List<Dependentes> findByNome(String nome);
+	
+	@Query(value="select u from Dependentes u where u.nome like %?1% ")
+	List<Dependentes>findByNomesDependentes(String nome);
+
 }
