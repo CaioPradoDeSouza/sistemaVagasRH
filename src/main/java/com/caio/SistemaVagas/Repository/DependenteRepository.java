@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.caio.SistemaVagas.Model.Dependentes;
+import com.caio.SistemaVagas.Model.Dependente;
 import com.caio.SistemaVagas.Model.Funcionario;
 
-public interface DependenteRepository extends CrudRepository <Dependentes, String> {
+public interface DependenteRepository extends CrudRepository <Dependente, String> {
 	
-	Iterable<Dependentes> findByFuncionario(Funcionario funcionario);
+	Iterable<Dependente> findByFuncionario(Funcionario funcionario);
 	
 	
 	// pensando no metodo delele
-	Dependentes findByCpf(String cpf);
-	Dependentes findById(long id);
+	Dependente findByCpf(String cpf);
+	Dependente findById(long id);
 	
 	// criado para impelementar 
-	List<Dependentes> findByNome(String nome);
+	List<Dependente> findByNome(String nome);
 	
-	@Query(value="select u from Dependentes u where u.nome like %?1% ")
-	List<Dependentes>findByNomesDependentes(String nome);
+	@Query(value="select u from Dependente u where u.nome like %?1% ")
+	List<Dependente>findByNomesDependentes(String nome);
 
 }

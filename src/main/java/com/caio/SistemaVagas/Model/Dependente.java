@@ -8,7 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Dependentes {
+public class Dependente {
 	
 	@Id
 	@GeneratedValue

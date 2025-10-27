@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.caio.SistemaVagas.Model.Dependentes;
+import com.caio.SistemaVagas.Model.Dependente;
 import com.caio.SistemaVagas.Model.Funcionario;
 import com.caio.SistemaVagas.Repository.DependenteRepository;
 import com.caio.SistemaVagas.Repository.FuncionarioRepository;
@@ -29,7 +29,7 @@ public class FuncionarioController {
 	// chama o form de cadastrar Funcionario
 	@RequestMapping("/cadastrarFuncionario")
 	public String form() {
-		return "funcionario/formFuncionario";
+		return "funcionario/form-funcionario";
 	}
 
 	// cadastra funcionarios
@@ -49,47 +49,47 @@ public class FuncionarioController {
 	// listar funcionário
 	@RequestMapping(value = "/funcionarios")
 	public ModelAndView listaFuncionarios() {
-		ModelAndView mv = new ModelAndView("funcionario/listaFuncionario");
+		ModelAndView mv = new ModelAndView("funcionario/lista-funcionario");
 		Iterable<Funcionario> funcionarios = fr.findAll();
 		mv.addObject("funcionarios", funcionarios);
 		return mv;
 	}
 
 	// listar dependentes
-	@RequestMapping("/dependentes/{id}")
+	@RequestMapping("/detalhes-funcionario/{id}")
 	public ModelAndView dependentes(@PathVariable("id") long id) {
 		Funcionario funcionario = fr.findById(id);
-		ModelAndView mv = new ModelAndView("funcionario/dependentes");
+		ModelAndView mv = new ModelAndView("funcionario/detalhes-funcionario");
 		mv.addObject("funcionarios", funcionario);
 
 		// lista de dependentes baseada no funcionário
-		Iterable<Dependentes> dependentes = dr.findByFuncionario(funcionario);
-		mv.addObject("dependentes", dependentes);
+		Iterable<Dependente> dependente = dr.findByFuncionario(funcionario);
+		mv.addObject("dependentes", dependente);
 
 		return mv;
 	}
 
 	// adicionar dependentes
-	@RequestMapping(value = "/dependentes/{id}", method = RequestMethod.POST)
-	public String dependentesPost(@PathVariable("id") long id, Dependentes dependentes, BindingResult result,
+	@RequestMapping(value = "/detalhes-funcionario/{id}", method = RequestMethod.POST)
+	public String dependentesPost(@PathVariable("id") long id, Dependente dependente, BindingResult result,
 			RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagen", "Verifique os campos ! ");
-			return "redirect:/dependentes/{id}";
+			return "redirect:/detalhes-funcionario/{id}";
 		}
 
-		if (dr.findByCpf(dependentes.getCpf()) != null) {
+		if (dr.findByCpf(dependente.getCpf()) != null) {
 			attributes.addFlashAttribute("mensagem_erro", "CPF duplicado");
-			return "redirect:/dependentes/{id}";
+			return "redirect:/detalhes-funcionario/{id}";
 		}
 
 		Funcionario funcionario = fr.findById(id);
-		dependentes.setFuncionario(funcionario);
-		dr.save(dependentes);
+		dependente.setFuncionario(funcionario);
+		dr.save(dependente);
 		attributes.addFlashAttribute("mensagem", "Dependente adicionado com sucesso ! ");
 
-		return "redirect:/dependentes/{id}";
+		return "redirect:/detalhes-funcionario/{id}";
 
 	}
 
@@ -121,21 +121,21 @@ public class FuncionarioController {
 		
 		long idLong = funcionario.getId();
 		String id = "" + idLong;
-		return "redirect:/dependentes/" + id;
+		return "redirect:/detalhes-funcionario/" + id;
 	}
 	
 	// deletar dependente
 	@RequestMapping(value = "/deletarDependente")
 	public String deletarDependente(String cpf) {
 		
-		Dependentes dependente = dr.findByCpf(cpf);
+		Dependente dependente = dr.findByCpf(cpf);
 		
 		Funcionario funcionario = dependente.getFuncionario();
 		String codigo = "" + funcionario.getId();
 				
 		dr.delete(dependente);
 		
-		return "redirect:/dependentes/" + codigo;
+		return "redirect:/detalhes-funcionario/" + codigo;
 	}
 
 }

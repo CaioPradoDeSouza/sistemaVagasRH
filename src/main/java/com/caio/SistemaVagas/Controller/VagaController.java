@@ -33,7 +33,7 @@ public class VagaController {
 	@RequestMapping("/cadastrarVaga")
 	public String form() {
 
-		return "vaga/formVaga";
+		return "vaga/form-vaga";
 	}
 
 	@RequestMapping(value = "/cadastrarVaga", method = RequestMethod.POST)
@@ -53,7 +53,7 @@ public class VagaController {
 
 	@RequestMapping("/vagas")
 	public ModelAndView listaVagas() {
-		ModelAndView mv = new ModelAndView("vaga/listaVaga");
+		ModelAndView mv = new ModelAndView("vaga/lista-vaga");
 		Iterable<Vaga> vagas = vr.findAll();
 		mv.addObject("vagas", vagas);
 		return mv;
@@ -64,7 +64,7 @@ public class VagaController {
 	@RequestMapping("/vaga/{codigo}")
 	public ModelAndView detalhesVaga(@PathVariable("codigo") long codigo) {
 		Vaga vaga = vr.findByCodigo(codigo);
-		ModelAndView mv = new ModelAndView("vaga/detalhesVaga");
+		ModelAndView mv = new ModelAndView("vaga/detalhes-vaga");
 		mv.addObject("vaga", vaga);
 
 		Iterable<Candidato> candidatos = cr.findByVaga(vaga);
@@ -141,7 +141,7 @@ public class VagaController {
 		long codigoLong = vaga.getCodigo();
 		String codigo = "" + codigoLong;
 		
-		return "redirect:/" + codigo;
+		return "redirect:/vaga/" + codigo;
 		
 	}
 	

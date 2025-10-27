@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.caio.SistemaVagas.Model.Candidato;
-import com.caio.SistemaVagas.Model.Dependentes;
+import com.caio.SistemaVagas.Model.Dependente;
 import com.caio.SistemaVagas.Model.Funcionario;
 import com.caio.SistemaVagas.Model.Vaga;
 
