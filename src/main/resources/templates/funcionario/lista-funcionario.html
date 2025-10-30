@@ -77,7 +77,7 @@
 			<tbody>
 				<tr th:each="funcionario : ${funcionarios}">
 
-					<td><a th:href="${(#mvc.url('FC#dependentes').arg(0,funcionario.id)).build()}"><span
+					<td><a th:href="${(#mvc.url('FC#detalhesFuncionario').arg(0,funcionario.id)).build()}"><span
 								th:text="${funcionario.nome}"></span></a></td>
 					<td><span th:text="${funcionario.data}"></span></td>
 					<td><span th:text="${funcionario.email}"></span></td>
@@ -87,7 +87,7 @@
 					<td><a th:href="${(#mvc.url('FC#editarFuncionario').arg(0,funcionario.id)).build()}"><button
 								type="button" class="btn btn-primary">Editar</button></a></td>
 
-					<td><a th:href="${(#mvc.url('FC#dependentes').arg(0,funcionario.id)).build()}"><button type="button"
+					<td><a th:href="${(#mvc.url('FC#detalhesFuncionario').arg(0,funcionario.id)).build()}"><button type="button"
 								class="btn btn-success">Adicionar
 								dependente</button></a></td>
 

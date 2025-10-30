@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 public class Dependente {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(unique=true)

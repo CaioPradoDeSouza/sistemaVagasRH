@@ -116,7 +116,7 @@ public class VagaController {
 		
 		cr.delete(candidato);
 		
-		return "redirect:/" + codigo;
+		return "redirect:/vaga/" + codigo;
 	}
 	
 	// Métodos que atualizam a vaga
